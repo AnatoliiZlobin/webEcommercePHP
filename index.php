@@ -3,7 +3,6 @@
   mysqli_select_db($con, 'items');
   $sql = "SELECT * FROM `elfbar` WHERE 1";
   $featured = $con->query($sql);
-  $row = $featured->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -50,22 +49,24 @@
   </div>
 </nav>
 
-<div class="col-md-2">
-
-</div>
+<div class="col-md-2"></div>
 
 <div class="col-md-8">
   <div class="row">
-    <h2>TopProducts</h2><br><br>
-    <div class="col-md-5">
-      <?php
-      echo 'Today’s date is <b>' . date('Y/m/d') . '</b> and it’s a <b>'.date('l').'</b> today!';
+    <h2 class="text-center">TopProducts</h2><br><br>
+      <?php 
+        while ($product = mysqli_fetch_assoc($featured)):
       ?>
-      <?php
-      $let = $featured->num_rows;
-      echo $let;
-      echo "id-: " . $row["id"] . $row["title"] . $row["price"];
-      ?>
+      <div class="col-md-5">
+        <h4><?= $product['type'];?></h4>
+        <h4><?= $product['title'];?></h4>
+        <img src="<?= $product['image'];?>" alt="<?= $product['title'];?>"/>
+        <p class="lprice">Rs <?= $product['price'];?></p>
+        <a href="details.php">
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#details-1">More</button>
+        </a>
+      </div>
+      <?php endwhile; ?>
     </div>
   </div>
 </div>
