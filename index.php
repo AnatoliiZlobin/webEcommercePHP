@@ -57,11 +57,12 @@
 <div class="container w-50">
   <div class="row">
     <h2 class="text-center">TopProducts</h2><br><br>
+    
       <?php 
         while ($product = mysqli_fetch_assoc($featured)):
       ?>
 
-      <div class="card" style="width: 18rem; padding: 0rem;">
+      <div class="card text-center bg-dark text-white" style="width: 18rem; padding: 0rem; margin:auto; margin-bottom: 1.5rem;">
         <img class="card-img-top" src="<?= $product['image'];?>" alt="<?= $product['title'];?>"/>
         <div class="card-body">
         <h4><?= $product['type'];?></h4>
